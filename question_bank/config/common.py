@@ -24,6 +24,7 @@ class Common(Configuration):
 
         # Your apps
         'question_bank.users',
+        'question_model'
 
     )
 
