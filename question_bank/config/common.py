@@ -3,11 +3,12 @@ from os.path import join
 from distutils.util import strtobool
 import dj_database_url
 from configurations import Configuration
+import datetime
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 class Common(Configuration):
-
     INSTALLED_APPS = (
         'django.contrib.admin',
         'django.contrib.auth',
@@ -15,13 +16,19 @@ class Common(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
-
+        'django.contrib.sites',
 
         # Third party apps
-        'rest_framework',            # utilities for rest apis
+        'rest_framework',  # utilities for rest apis
         'rest_framework.authtoken',  # token authentication
-        'django_filters',            # for filtering rest endpoints
+        'django_filters',  # for filtering rest endpoints
 
+
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'rest_auth',
+        'rest_auth.registration',
         # Your apps
         'question_bank.users',
         'question_model'
@@ -196,7 +203,13 @@ class Common(Configuration):
             'rest_framework.permissions.IsAuthenticated',
         ],
         'DEFAULT_AUTHENTICATION_CLASSES': (
-            'rest_framework.authentication.SessionAuthentication',
-            'rest_framework.authentication.TokenAuthentication',
+            'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
         )
+    }
+
+    REST_USE_JWT = True
+    SITE_ID = 1
+    JWT_AUTH = {
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+        'JWT_ALLOW_REFRESH': True,
     }
