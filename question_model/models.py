@@ -2,6 +2,8 @@ from django.db import models
 
 
 # Create your models here.
+from django.utils.datetime_safe import datetime
+
 
 class Subject(models.Model):
     syllabus_code = models.IntegerField(help_text='4 digit unique Syllabus Code', primary_key=True)
@@ -80,13 +82,13 @@ class Customer(models.Model):
     avatar = models.FileField(help_text="Choose an avatar", upload_to='avatars/')
     phone = models.CharField(help_text="Enter your phone number using the format +880**********", max_length=14)
     school = models.CharField(help_text="Enter the name your school", max_length=50)
-    Class = models.IntegerField(choices=((9, "9 (O Level/IGCSE)"),
-                                         (10, "10 (O Level/IGCSE)"),
-                                         (11, "11 (AS Level)"),
-                                         (12, "12 (A Level)")),
-                                help_text="Which class are you currently studying?")
+    level = models.IntegerField(choices=((1, "O Levels"),
+                                         (2, "IGCSE"),
+                                         (3, "A Levels")),
+                                help_text="Which level are you currently in?", default=0)
     date_of_birth = models.DateField(help_text="Enter your date of birth")
     registered_on = models.DateField(auto_now_add=True)
+    last_login = models.DateField(auto_now=True)
     credit = models.IntegerField(default=100)
     social_media_link = models.CharField(max_length=100)
     uncredited_flags = models.IntegerField(default=0)
