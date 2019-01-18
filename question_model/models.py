@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 
 # Create your models here.
 from django.utils.datetime_safe import datetime
@@ -73,7 +73,8 @@ class Solution(models.Model):
 
 
 class Customer(models.Model):
-    customer_name = models.CharField(help_text="Enter your full name", max_length=100)
+    account = models.OneToOneField(settings.AUTH_USER_MODEL,
+                                 on_delete=models.CASCADE)
     avatar = models.FileField(help_text="Choose an avatar", upload_to='avatars/')
     phone = models.CharField(help_text="Enter your phone number using the format +880**********", max_length=14)
     school = models.CharField(help_text="Enter the name your school", max_length=50)
@@ -89,15 +90,15 @@ class Customer(models.Model):
     credited_flags = models.IntegerField(default=0)
 
     def __str__(self):
-        return self.customer_name
+        return self.phone
 
 
 class License(models.Model):
-    account_ID = models.ForeignKey(Customer, related_name="user", on_delete=models.CASCADE)
-    paper_ID = models.ForeignKey(Paper, related_name="paper_ID", null=True, on_delete=models.SET_NULL)
+    account = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="user", on_delete=models.CASCADE)
+    paper = models.ForeignKey(Paper, related_name="papers", null=True, on_delete=models.SET_NULL)
 
     class Meta:
-        unique_together = ('account_ID', 'paper_ID')
+        unique_together = ('account', 'paper')
 
 class Flag(models.Model):
     flag_ID = models.IntegerField(primary_key=True, db_index=True)

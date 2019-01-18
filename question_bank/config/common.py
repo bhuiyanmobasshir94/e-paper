@@ -57,14 +57,6 @@ class Common(Configuration):
         ('Author', 'richard.hendriks@piedpiper.com'),
     )
 
-    # Postgres
-    DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://appstar.coqf5dhye6kx.us-east-2.rds.amazonaws.com:@appstardb:5432/appstar',
-            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
-        )
-    }
-
     # General
     APPEND_SLASH = False
     TIME_ZONE = 'UTC'
@@ -187,7 +179,6 @@ class Common(Configuration):
     }
 
     # Custom user app
-    AUTH_USER_MODEL = 'question_model.Customer'
 
     # Django Rest Framework
     REST_FRAMEWORK = {
@@ -212,6 +203,4 @@ class Common(Configuration):
         'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
         'JWT_ALLOW_REFRESH': True,
     }
-    REST_AUTH_REGISTER_SERIALIZERS = {
-        'REGISTER_SERIALIZER': 'question_model.serializers.RegisterSerializer',
-    }
+

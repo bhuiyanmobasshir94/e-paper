@@ -20,10 +20,14 @@ class Local(Common):
         '--cover-package=question_bank'
     ]
     DATABASES = {
-        'default': dj_database_url.config(
-            default='postgres://appstar:appstardb@appstar.coqf5dhye6kx.us-east-2.rds.amazonaws.com:5432/appstar',
-            conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
-        )
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'appstar',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
     }
     # Mail
     EMAIL_HOST = 'localhost'
