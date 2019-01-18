@@ -73,11 +73,6 @@ class Solution(models.Model):
 
 
 class Customer(models.Model):
-    email = models.EmailField(help_text="Enter your email", primary_key=True, db_index=True)
-    # TODO it should be encrypted
-    password = models.CharField(help_text="Enter your password", max_length=50)
-    # MAC address of user
-#    MAC_address = models.CommaSeparatedIntegerField()
     customer_name = models.CharField(help_text="Enter your full name", max_length=100)
     avatar = models.FileField(help_text="Choose an avatar", upload_to='avatars/')
     phone = models.CharField(help_text="Enter your phone number using the format +880**********", max_length=14)
@@ -88,7 +83,6 @@ class Customer(models.Model):
                                 help_text="Which level are you currently in?", default=0)
     date_of_birth = models.DateField(help_text="Enter your date of birth")
     registered_on = models.DateField(auto_now_add=True)
-    last_login = models.DateField(auto_now=True)
     credit = models.IntegerField(default=100)
     social_media_link = models.CharField(max_length=100)
     uncredited_flags = models.IntegerField(default=0)

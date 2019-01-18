@@ -30,7 +30,6 @@ class Common(Configuration):
         'rest_auth',
         'rest_auth.registration',
         # Your apps
-        'question_bank.users',
         'question_model'
 
     )
@@ -61,7 +60,7 @@ class Common(Configuration):
     # Postgres
     DATABASES = {
         'default': dj_database_url.config(
-            default='postgres://postgres:@postgres:5432/postgres',
+            default='postgres://appstar.coqf5dhye6kx.us-east-2.rds.amazonaws.com:@appstardb:5432/appstar',
             conn_max_age=int(os.getenv('POSTGRES_CONN_MAX_AGE', 600))
         )
     }
@@ -188,7 +187,7 @@ class Common(Configuration):
     }
 
     # Custom user app
-    AUTH_USER_MODEL = 'users.User'
+    AUTH_USER_MODEL = 'question_model.Customer'
 
     # Django Rest Framework
     REST_FRAMEWORK = {
@@ -212,4 +211,7 @@ class Common(Configuration):
     JWT_AUTH = {
         'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
         'JWT_ALLOW_REFRESH': True,
+    }
+    REST_AUTH_REGISTER_SERIALIZERS = {
+        'REGISTER_SERIALIZER': 'question_model.serializers.RegisterSerializer',
     }
