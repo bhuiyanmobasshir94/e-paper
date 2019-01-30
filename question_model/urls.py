@@ -1,10 +1,13 @@
-from django.conf.urls import url
 
-from .views import SubjectListAPIView
+from django.urls import path
+
+from .views import SubjectListAPIView, SolutionDetailAPIView
 
 
 urlpatterns = [
-    url(r'^subjects/', SubjectListAPIView.as_view())
+    path('^subjects/', SubjectListAPIView.as_view()),
+    path('solution/<int:id>/',SolutionDetailAPIView.as_view())
+
 ]
 
 
