@@ -15,7 +15,7 @@ class Local(Common):
         BASE_DIR,
         '-s',
         '--nologcapture',
-        '--with-coverage',
+        '--withg-coverage',
         '--with-progressive',
         '--cover-package=question_bank'
     ]
