@@ -1,8 +1,8 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 
-from question_model.models import Subject
-from question_model.serializers import SubjectSerializer
+from question_model.models import Subject, Paper
+from question_model.serializers import SubjectSerializer, PaperSerializer
 
 solutions = [
     {
@@ -54,3 +54,11 @@ class SubjectListAPIView(ListAPIView):
 class SolutionDetailAPIView(RetrieveAPIView):
     def get(self, request, id, *args, **kwargs):
         return Response(solutions[id])
+
+class PaperListAPIView(ListAPIView):
+
+
+    serializer_class = PaperSerializer
+
+    def get_queryset(self):
+        return Paper.objects.filter(subject_id = 2)
