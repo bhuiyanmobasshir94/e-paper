@@ -59,7 +59,7 @@ class Solution(models.Model):
                                                ('C', "C"),
                                                ('D', "D")),
                                       max_length=2)
-    solution = models.CharField(help_text="Can use Latex code in solution", max_length=100)
+    solution = models.CharField(help_text="Can use Latex code in solution", max_length=1000)
     file_link = models.FileField(help_text="link to animation/video (optional)", upload_to='solutions/', blank=True)
     difficulty = models.FloatField(help_text="for heuristics")
     chapter_number = models.ForeignKey(Chapter, related_name="chapters", null=True, on_delete=models.SET_NULL)

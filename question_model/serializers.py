@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from question_model.models import Subject, Paper
+from question_model.models import Subject, Paper, Solution
 
 
 class SubjectSerializer(serializers.ModelSerializer):
@@ -12,4 +12,10 @@ class SubjectSerializer(serializers.ModelSerializer):
 class PaperSerializer(serializers.ModelSerializer):
     class Meta:
         model = Paper
+        fields = '__all__'
+
+
+class SolutionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Solution
         fields = '__all__'

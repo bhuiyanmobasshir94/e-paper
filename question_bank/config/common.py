@@ -200,7 +200,7 @@ class Common(Configuration):
     REST_USE_JWT = True
     SITE_ID = 1
     JWT_AUTH = {
-        'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+        'JWT_EXPIRATION_DELTA': datetime.timedelta(days=10),
         'JWT_ALLOW_REFRESH': True,
     }
 
