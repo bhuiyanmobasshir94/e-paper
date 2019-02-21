@@ -8,7 +8,8 @@ from question_model.models import (
 from question_model.serializers import (
     SubjectSerializer,
     PaperSerializer,
-    SolutionSerializer
+    SolutionSerializer,
+    SolutionIDSerializer
 )
 
 solutions = [
@@ -63,6 +64,13 @@ class SolutionDetailAPIView(RetrieveAPIView):
 
     def get_queryset(self):
         return Solution.objects.filter(paper_reference_id=self.kwargs['paper_pk'])
+
+
+class SolutionListAPIView(ListAPIView):
+    serializer_class = SolutionIDSerializer
+
+    def get_queryset(self):
+        return Solution.objects.filter(paper_reference_id=self.kwargs['paper_pk']).order_by('-id')
 
 
 class PaperListAPIView(ListAPIView):

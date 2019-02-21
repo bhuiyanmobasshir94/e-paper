@@ -19,3 +19,9 @@ class SolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Solution
         fields = '__all__'
+
+
+class SolutionIDSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Solution
+        fields = ('id',)
