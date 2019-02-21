@@ -1,9 +1,6 @@
 from django.db import models
 from django.conf import settings
 
-# Create your models here.
-from django.utils.datetime_safe import datetime
-
 
 class Subject(models.Model):
     syllabus_code = models.IntegerField(help_text='4 digit unique Syllabus Code', primary_key=True)
