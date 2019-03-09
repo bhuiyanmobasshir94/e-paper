@@ -71,7 +71,7 @@ class Solution(models.Model):
 
 class Customer(models.Model):
     account = models.OneToOneField(settings.AUTH_USER_MODEL,
-                                 on_delete=models.CASCADE)
+                                   on_delete=models.CASCADE)
     avatar = models.FileField(help_text="Choose an avatar", upload_to='avatars/')
     phone = models.CharField(help_text="Enter your phone number using the format +880**********", max_length=14)
     school = models.CharField(help_text="Enter the name your school", max_length=50)
@@ -96,6 +96,7 @@ class License(models.Model):
 
     class Meta:
         unique_together = ('account', 'paper')
+
 
 class Flag(models.Model):
     flag_ID = models.IntegerField(primary_key=True, db_index=True)
